@@ -9,13 +9,17 @@ class Main extends Component {
   };
 
   componentDidMount() {
-    fetch("http://www.omdbapi.com/?i=tt3896198&apikey=62cd4d80&s=avatar")
+    fetch("http://www.omdbapi.com/?i=tt3896198&apikey=62cd4d80&s=batman")
       .then((response) => response.json())
       .then((data) => this.setState({ movies: data.Search }));
   }
 
-  searchByText = (text) => {
-    fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=62cd4d80&s=${text}`)
+  searchByText = (text, type = "all") => {
+    fetch(
+      `http://www.omdbapi.com/?i=tt3896198&apikey=62cd4d80&s=${text}${
+        type !== "all" ? `&type=${type}` : ""
+      }`
+    )
       .then((response) => response.json())
       .then((data) => this.setState({ movies: data.Search }));
     console.log("SEARCH BY TEXT => ", text);

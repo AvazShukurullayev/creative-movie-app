@@ -15,3 +15,8 @@ ul {
 .nav__link:hover {
   color: dodgerblue;
 }
+
+.radio-toggles label {
+  cursor: pointer;
+  padding: 3px;
+}

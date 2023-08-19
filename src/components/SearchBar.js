@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class SearchBar extends Component {
   state = {
-    search: "",
+    search: "batman",
     type: "all",
   };
 
@@ -18,7 +18,9 @@ class SearchBar extends Component {
   };
 
   handleCategory = (e) => {
-    this.setState({ type: e.target.dataset.type });
+    this.setState({ type: e.target.dataset.type }, () => {
+      this.props.searchByText(this.state.search, this.state.type);
+    });
   };
 
   searchBtn = () => {
@@ -48,7 +50,7 @@ class SearchBar extends Component {
           </button>
         </div>
         <div className="radio-toggles border rounded shadow p-2 my-3 d-flex align-items-center justify-content-around">
-          <div className="d-flex align-items-center gap-1">
+          <div className="d-flex align-items-center">
             <input
               type="radio"
               id="option-1"
@@ -59,7 +61,7 @@ class SearchBar extends Component {
             />
             <label htmlFor="option-1">Movie</label>
           </div>
-          <div className="d-flex align-items-center gap-1">
+          <div className="d-flex align-items-center">
             <input
               type="radio"
               id="option-2"
@@ -70,7 +72,7 @@ class SearchBar extends Component {
             />
             <label htmlFor="option-2">All</label>
           </div>
-          <div className="d-flex align-items-center gap-1">
+          <div className="d-flex align-items-center">
             <input
               type="radio"
               id="option-3"
