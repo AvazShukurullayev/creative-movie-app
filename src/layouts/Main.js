@@ -9,14 +9,14 @@ class Main extends Component {
   };
 
   componentDidMount() {
-    fetch("http://www.omdbapi.com/?i=tt3896198&apikey=62cd4d80&s=batman")
+    fetch("https://www.omdbapi.com/?i=tt3896198&apikey=62cd4d80&s=batman")
       .then((response) => response.json())
       .then((data) => this.setState({ movies: data.Search }));
   }
 
   searchByText = (text, type = "all") => {
     fetch(
-      `http://www.omdbapi.com/?i=tt3896198&apikey=62cd4d80&s=${text}${
+      `https://www.omdbapi.com/?i=tt3896198&apikey=62cd4d80&s=${text}${
         type !== "all" ? `&type=${type}` : ""
       }`
     )
@@ -35,7 +35,14 @@ class Main extends Component {
               <SearchBar searchByText={this.searchByText} />
             </div>
           </div>
-          {movies ? <Movies movies={movies} /> : <Loader />}
+          {movies ? (
+            <Movies movies={movies} />
+          ) : (
+            <div className="container p-5 text-center">
+              <h1>404</h1>
+              <p>Page not found!</p>
+            </div>
+          )}
         </section>
       </main>
     );
